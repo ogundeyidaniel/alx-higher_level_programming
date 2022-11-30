@@ -1,3 +1,3 @@
 #!/usr/bin/python3
 number = 98
-print("{:d} Battery stree\n".format(number))
+print(f"{:d} Battery stree"\n.format(number))
