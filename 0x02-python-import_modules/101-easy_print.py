@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-import printme
+import easy_print
