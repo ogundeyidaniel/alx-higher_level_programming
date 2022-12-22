@@ -1,49 +1,53 @@
 #!/usr/bin/python3
-class Square():
-    """A square class."""
+"""My square module"""
+
+
+class Square:
+    """defines a square"""
 
     def __init__(self, size=0):
-        """Initialize class."""
-        self.size = size
-
-    def area(self):
-        """Return the current square area."""
-        return self.__size ** 2
+        """Create a Square
+        Args: size: length of a side of Square
+        """
+        self.__size = size
 
     @property
     def size(self):
-        """Retrieve size of Square class."""
+        """"The propery of size as the len of a side of Square
+        Raises:
+            TypeError: if size != int
+            ValueErrorr: if size < 0
+        """
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Set size of Square class."""
-        if not isinstance(value, int) and not isinstance(value, float):
-            raise TypeError("size must be an number")
+        if not isinstance(value, int):
+            raise TypeError('size must be an integer')
         if value < 0:
-            raise ValueError("size must be >= 0")
+            raise ValueError('size must be >= 0')
         self.__size = value
 
-    def __eq__(self, other):
-        """Overload equal operator."""
-        return self.area() == other.area()
+    def area(self):
+        """Get the area of a Square
+        Returns: The size squared
+        """
+        return self.__size * self.__size
 
-    def __ne__(self, other):
-        """Overload not equal operator."""
-        return self.area() != other.area()
-
-    def __gt__(self, other):
-        """Overload greater than operator."""
-        return self.area() > other.area()
+    def __le__(self, other):
+        return self.area() <= other.area()
 
     def __lt__(self, other):
-        """Overload less than operator."""
         return self.area() < other.area()
 
     def __ge__(self, other):
-        """Overload greater than or equal operator."""
         return self.area() >= other.area()
 
-    def __le__(self, other):
-        """Overload less than or equal operator."""
-        return self.area() <= other.area()
+    def __ne__(self, other):
+        return self.area() != other.area()
+
+    def __gt__(self, other):
+        return self.area() > other.area()
+
+    def __eq__(self, other):
+        return self.area() == other.area()
