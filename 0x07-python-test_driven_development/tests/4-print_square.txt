@@ -1,0 +1,55 @@
+The ``print_square`` module
+===============================================================================
+
+Using ``print_square``
+-------------------------------------------------------------------------------
+
+
+Import print_square form 4-print_square
+
+    >>> print_square = __import__('4-print_square').print_square
+
+It should raise exception if size not an integer
+
+    >>> print_square('size')
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+It should raise exception if size not an integer
+
+    >>> print_square(True)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+It should raise exception if size less than 0
+
+    >>> print_square(-4)
+    Traceback (most recent call last):
+        ...
+    ValueError: size must be >= 0
+
+It should raise exception if size is float and less than 0
+
+    >>> print_square(-5.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
+It should print an empty line if size equal 0
+
+    >>> print_square(0)
+    <BLANKLINE>
+
+It should print a square as normal if we passing integer
+
+    >>> print_square(3)
+    ###
+    ###
+    ###
+
+It should print a single symbol when passing 1
+
+    >>> print_square(1)
+    #

@@ -1,0 +1,68 @@
+The ``matrix_divided`` module
+===============================================================================
+
+Using ``matrix_divided``
+-------------------------------------------------------------------------------
+
+Import matrix_divided from 2-matrix_divided
+
+    >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+It should raise exception when passing a non list of list matrix
+
+    >>> matrix_divided([1, 3], 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+It should raise exception when passing a non list of list matrix
+
+    >>> matrix_divided([[1, 3], 2], 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+It should raise exception when passing a non list of number
+
+    >>> matrix_divided([[1, 3], ["a", 2]], 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+It should raise exception when passing a non list of number
+
+    >>> matrix_divided([[1, 3], [True, 2]], 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+It should raise exception when passing no equivalent length of rows
+
+    >>> matrix_divided([[1, 3, 4], [2, 3]], 3)
+    Traceback (most recent call last):
+        ...
+    TypeError: Each row of the matrix must have the same size
+
+It shoulf raise exception when passing a non number 'div'
+
+    >>> matrix_divided([[1, 3], [2, 3]], "a")
+    Traceback (most recent call last):
+        ...
+    TypeError: div must be a number
+
+It should raise exception when passing a 'div' as a 0
+
+    >>> matrix_divided([[1, 3], [2, 3]], 0)
+    Traceback (most recent call last):
+        ...
+    ZeroDivisionError: division by zero
+
+It should return the right list
+
+    >>> matrix_divided([[1, 2], [3, 4]], 2)
+    [[0.5, 1.0], [1.5, 2.0]]
+
+It should return the right list rounded by 2
+
+    >>> matrix_divided([[1, 2], [3, 4]], 3)
+    [[0.33, 0.67], [1.0, 1.33]]

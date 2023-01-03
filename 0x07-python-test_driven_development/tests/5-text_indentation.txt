@@ -1,0 +1,81 @@
+The ``text_indentation`` module
+===============================================================================
+
+Using ``text_indentation``
+-------------------------------------------------------------------------------
+
+Import text_indentation from 5-text_indentation
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+It should raise an exception if 'text' is not a string
+
+    >>> text_indentation(98)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+It should print nothing if the 'text' is empty
+
+    >>> text_indentation("")
+
+It should tokenize a given string based on '.' seperator
+
+    >>> text_indentation("Lorem ipsum dolor sit amet consectetur. Hello ipsum.")
+    Lorem ipsum dolor sit amet consectetur.
+    <BLANKLINE>
+    Hello ipsum.
+    <BLANKLINE>
+
+It should tokenize a given string based on '.' seperator with space
+
+    >>> text_indentation("Lorem ipsum dolor sit amet consectetur. \
+    ...                           Hello ipsum.")
+    Lorem ipsum dolor sit amet consectetur.
+    <BLANKLINE>
+    Hello ipsum.
+    <BLANKLINE>
+
+It should tokenize a given string based on ':' seperator
+
+    >>> text_indentation("Lorem ipsum dolor sit amet consectetur: Hello ipsum.")
+    Lorem ipsum dolor sit amet consectetur:
+    <BLANKLINE>
+    Hello ipsum.
+    <BLANKLINE>
+
+It should tokenize a given string based on ':' seperator with space
+
+    >>> text_indentation("Lorem ipsum dolor sit amet consectetur: \
+    ...                           Hello ipsum.")
+    Lorem ipsum dolor sit amet consectetur:
+    <BLANKLINE>
+    Hello ipsum.
+    <BLANKLINE>
+
+It should tokenize a given string based on '?' seperator
+
+    >>> text_indentation("Lorem ipsum dolor sit amet consectetur? Hello ipsum.")
+    Lorem ipsum dolor sit amet consectetur?
+    <BLANKLINE>
+    Hello ipsum.
+    <BLANKLINE>
+
+It should tokenize a given string based on '?' seperator with space
+
+    >>> text_indentation("Lorem ipsum dolor sit amet consectetur? \
+    ...                           Hello ipsum.")
+    Lorem ipsum dolor sit amet consectetur?
+    <BLANKLINE>
+    Hello ipsum.
+    <BLANKLINE>
+
+It should tokenize a given string based on multiple seperator
+
+    >>> text_indentation("Lorem ipsum dolor? sit amet consectetur: Hello ipsum.")
+    Lorem ipsum dolor?
+    <BLANKLINE>
+    sit amet consectetur:
+    <BLANKLINE>
+    Hello ipsum.
+    <BLANKLINE>

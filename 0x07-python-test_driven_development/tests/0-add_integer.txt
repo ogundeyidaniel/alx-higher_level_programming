@@ -1,0 +1,77 @@
+The ``add_integer`` module
+===============================================================================
+
+Using ``add_integer``
+-------------------------------------------------------------------------------
+
+Import add_integer from 0-add_integer
+
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+it should do the simple calculation
+
+    >>> add_integer(1, 2)
+    3
+
+it should accept negative integer
+
+    >>> add_integer(100, -2)
+    98
+
+it should invoke the default variable of b as 98
+
+    >>> add_integer(2)
+    100
+
+it should raise exception when passing an empty args
+
+    >>> add_integer()
+    Traceback (most recent call last):
+        ...
+    TypeError: add_integer() missing 1 required positional argument: 'a'
+
+it should return integer when passing float
+
+    >>> add_integer(100.3, 3)
+    103
+
+it should return integer when passing float
+
+    >>> add_integer(3, 33.9)
+    36
+
+it should raise exception when passing not integer for 'b'
+
+    >>> add_integer(4, "school")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+it should raise exception when passing not integer for 'a'
+
+    >>> add_integer("holberton", 4)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+it should make casting before addition
+
+    >>> add_integer(20.9, 20.9)
+    40
+
+It should not accept boolean value
+
+    >>> add_integer(True, 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+It should accept math operation inside the argument
+
+    >>> add_integer(5+6, 9)
+    20
+
+It should accept nesting call of add_integer
+
+    >>> add_integer(add_integer(5, 6), 9)
+    20
