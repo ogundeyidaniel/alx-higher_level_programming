@@ -1,77 +1,95 @@
-The ``add_integer`` module
-===============================================================================
+The ``0-add_integer`` module
+============================
 
 Using ``add_integer``
--------------------------------------------------------------------------------
+---------------------
 
-Import add_integer from 0-add_integer
-
+Importing function from the module:
     >>> add_integer = __import__('0-add_integer').add_integer
 
-it should do the simple calculation
-
+Adding 1 and 2
     >>> add_integer(1, 2)
     3
 
-it should accept negative integer
-
+Subtracting 100 and 2
     >>> add_integer(100, -2)
     98
 
-it should invoke the default variable of b as 98
-
-    >>> add_integer(2)
+Adding 2.1 and 98
+    >>> add_integer(2.1)
     100
 
-it should raise exception when passing an empty args
+Subtracting 100.3 and 2
+	    >>> add_integer(100.3, -2)
+	    98
 
-    >>> add_integer()
+Adding an integer number and a string
+    >>> add_integer(4, "School")
     Traceback (most recent call last):
-        ...
-    TypeError: add_integer() missing 1 required positional argument: 'a'
-
-it should return integer when passing float
-
-    >>> add_integer(100.3, 3)
-    103
-
-it should return integer when passing float
-
-    >>> add_integer(3, 33.9)
-    36
-
-it should raise exception when passing not integer for 'b'
-
-    >>> add_integer(4, "school")
-    Traceback (most recent call last):
-        ...
+	      ...
     TypeError: b must be an integer
 
-it should raise exception when passing not integer for 'a'
-
-    >>> add_integer("holberton", 4)
+Passing None
+    >>> add_integer(None)
     Traceback (most recent call last):
-        ...
+	      ...
     TypeError: a must be an integer
 
-it should make casting before addition
-
-    >>> add_integer(20.9, 20.9)
-    40
-
-It should not accept boolean value
-
-    >>> add_integer(True, 5)
+Adding a letter and a number
+    >>> add_integer('1', 1)
     Traceback (most recent call last):
-        ...
+              ...
     TypeError: a must be an integer
 
-It should accept math operation inside the argument
+Adding two letters
+    >>> add_integer('2', '1')
+    Traceback (most recent call last):
+              ...
+    TypeError: a must be an integer
 
-    >>> add_integer(5+6, 9)
-    20
+Adding a tuple
+    >>> add_integer((1, 1))
+    Traceback (most recent call last):
+              ...
+    TypeError: a must be an integer
 
-It should accept nesting call of add_integer
+Adding a number and a list
+    >>> add_integer(123, [])
+    Traceback (most recent call last):
+	      ...
+    TypeError: b must be an integer
 
-    >>> add_integer(add_integer(5, 6), 9)
-    20
+Passing a string
+    >>> add_integer("Hello")
+    Traceback (most recent call last):
+	      ...
+    TypeError: a must be an integer
+
+Adding two float numbers
+    >>> add_integer(2.9, 2.9)
+    4
+
+Subtracting 98 and 1
+    >>> add_integer(-1)
+    97
+
+Case Overflow:
+
+    >>> add_integer(float('inf'), 0)
+    Traceback (most recent call last):
+    	      ...
+    OverflowError: cannot convert float infinity to integer
+
+Case Overflow 2:
+
+    >>> add_integer(float('inf'), float('-inf'))
+    Traceback (most recent call last):
+    	      ...
+    OverflowError: cannot convert float infinity to integer
+
+Case NaN:
+
+    >>> add_integer(0, float('nan'))
+    Traceback (most recent call last):
+    	      ...
+    ValueError: cannot convert float NaN to integer
