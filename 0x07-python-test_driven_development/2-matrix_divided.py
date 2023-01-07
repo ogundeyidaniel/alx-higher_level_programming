@@ -1,39 +1,44 @@
 #!/usr/bin/python3
-
 """
-Matrix divide module
+Function that divides elements of a matrix
 """
 
 
 def matrix_divided(matrix, div):
     """
-    Divides all elements of 'matrix' by 'div'
-    Args:
-        matrix (list[list[int/float]]): list of list for integer or float
-        div (int/float): an integer or float as divider
-    Raises:
-        TypeError: if the list is not a list of list of integer or float
-        TypeError: if each row of the matrix doesn't have the same size
-        TypeErroe: if the div not a number
-        ZeroDivisionError: if div is a 0
-    Returns:
-        (list[list]): a matrix with same size of the given matrix
+    Divides all elements of a matrix
+    Arguments:
+    matrix: must be a list of lists ints or floats
+    with rows of the same size
+    div: must be a number int or float and not 0
+    Result is rounded to 2 decimal places
+    and a new matrix is generated
+    Raise TypeError or ZeroDivisionError if conditions not
+    met
     """
-    if not isinstance(matrix, list) or \
-            not all(type(row) is list for row in matrix) or \
-            not all(all(type(e) in (int, float) for e in row)
-                    for row in matrix):
-        raise TypeError(
-                "matrix must be a matrix (list of lists) of integers/floats"
-                )
-        return
-    if not all(len(row) == len(matrix[0]) for row in matrix):
-        raise TypeError("Each row of the matrix must have the same size")
-        return
-    if not isinstance(div, (int, float)):
-        raise TypeError("div must be a number")
-        return
+
+    if not matrix or \
+       not isinstance(matrix, list) or \
+       not all(isinstance(i, list) for i in matrix) or \
+       not all(len(j) for j in matrix) or \
+       not all([all(isinstance(k, (int, float)) for k in m) for m in matrix]):
+
+        msg = "matrix must be a matrix (list of lists) of integers/floats"
+        raise TypeError(msg)
+
+    checkl = [len(r) for r in matrix]
+
+    if len(set(checkl)) != 1:
+        msg = "Each row of the matrix must have the same size"
+        raise TypeError(msg)
+
+    if not isinstance(div, (int, float)) or div != div:
+        msg = "div must be a number"
+        raise TypeError(msg)
+
     if div == 0:
-        raise ZeroDivisionError("division by zero")
-        return
-    return [[round(i/div, 2) for i in row] for row in matrix]
+        msg = "division by zero"
+        raise ZeroDivisionError(msg)
+
+    new_m = [[round(j / div, 2) for j in i] for i in matrix]
+    return (new_m)
