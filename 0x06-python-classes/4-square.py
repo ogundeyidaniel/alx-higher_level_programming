@@ -1,51 +1,45 @@
 #!/usr/bin/python3
-"""
-Square module.
-"""
+# 0-square.py by Ehoneah Obed
+"""A module that defines a square """
 
 
 class Square:
-    """
-    Square define a geometric shape square
-    Attributes:
-        __size (int): the size of the square
-    """
+    """A class that represents a square"""
+
     def __init__(self, size=0):
-        """
-        Init method is a constructor fo Square class
+        """Initializing this square class
         Args:
-            size (int): the size of the square
+            size: represnets the size of the square defined
+        Raises:
+            TypeError: if size is not integer
+            ValueError: if size is less than zero
         """
-        self.size = size
+
+        if not isinstance(size, int):
+            raise TypeError('size must be an integer')
+        if size < 0:
+            raise ValueError('size must be >= 0')
+
+        self.__size = size
 
     @property
     def size(self):
-        """
-        Getter of instance attributes
-        """
+        """Retrieves size of square"""
+
         return self.__size
 
     @size.setter
     def size(self, value):
-        """
-        Setter of instance attributes
-        Args:
-            value (int): an integer assigned to to the square size
-        Raises:
-            TypeError: if size not an integer
-            ValueError: if size less than 0
-        """
-        if not type(value) is int:
-            raise TypeError("size must be an integer")
+        if not isinstance(value, int):
+            raise TypeError('size must be an integer')
         if value < 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+            raise ValueError('size must be >= 0')
+        self.__size = value
 
     def area(self):
         """
-        Area returns the current square area
-        Returns:
-            integer: the square area
+        Calculate area of the square
+        Returns: The square of the size
         """
-        return self.__size**2
+
+        return (self.__size ** 2)

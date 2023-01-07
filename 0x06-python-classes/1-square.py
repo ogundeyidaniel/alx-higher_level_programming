@@ -1,17 +1,14 @@
 #!/usr/bin/python3
-"""Square module"""
+# 0-square.py by Ehoneah Obed
+"""Defines a square """
 
 
 class Square:
-    """
-    Square define a geometric shape square
-    Attributes:
-        size (int): the size of the square
-    """
+    """Represents a square"""
+
     def __init__(self, size):
+        """Initializing this square class
+        Args: size - represnets the size of the square defined
         """
-        Init method is a constructor fo Square class
-        Args:
-            size (int): the size of the square
-        """
+
         self.__size = size
