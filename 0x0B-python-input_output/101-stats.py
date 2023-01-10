@@ -1,31 +1,39 @@
 #!/usr/bin/python3
+""" Read lines from standard input and compute metrics
+Input Format:
+<IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
+"""
 
-if __name__ == "__main__":
+from collections import defaultdict
+from sys import stdin, exit as sysexit
 
-    import sys
+STATUS_CODES = ['200', '301', '400', '401', '403', '404', '405', '500']
 
-    size = 0
-    statuscd = {}
 
+def print_stats(file_size, status_codes):
+    print("File size: {}".format(total_size), *(
+        "{}: {}".format(k, status_codes[k]) for k in sorted(status_codes)
+    ), sep="\n")
+
+
+if __name__ == '__main__':
+    status_codes = defaultdict(lambda: 0)
+    total_size = 0
+    line_count = 0
     while True:
         try:
-            counter = 0
-            for line in sys.stdin:
-                line = line.split()
-
-                size += int(line[8])
-                if statuscd.get(line[7], -1) == -1:
-                    statuscd[line[7]] = 1
+            for _ in range(10):
+                line = stdin.readline()
+                if line:
+                    *_, status_code, file_size = line.split()
+                    if status_code in STATUS_CODES:
+                        status_codes[status_code] += 1
+                    total_size += int(file_size)
                 else:
-                    statuscd[line[7]] += 1
-
-                if counter == 10:
-                    break
-                counter += 1
-
+                    if total_size:
+                        print_stats(file_size, status_codes)
+                    sysexit(0)
+            print_stats(file_size, status_codes)
         except KeyboardInterrupt:
-            exit()
-        finally:
-            print("File size: {}".format(size))
-            for key in sorted(statuscd):
-                print("{}: {}".format(key, statuscd[key])
+            print_stats(file_size, status_codes)
+            raise
