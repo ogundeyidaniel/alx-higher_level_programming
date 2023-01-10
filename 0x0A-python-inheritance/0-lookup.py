@@ -1,10 +1,13 @@
 #!/usr/bin/python3
-
-"""
-This is a module for lookup.
-"""
+"""Module to lookup for available methds"""
 
 
 def lookup(obj):
-    """Return the list of available attributes and methods of an object."""
+    """
+    Returns the list of available attributes and methods of an object
+    Args:
+        obj (object): the given object
+    Returns:
+        (list): objects list
+    """
     return dir(obj)
