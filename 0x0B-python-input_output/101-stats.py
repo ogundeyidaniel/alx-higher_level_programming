@@ -1,39 +1,45 @@
 #!/usr/bin/python3
-""" Read lines from standard input and compute metrics
-Input Format:
-<IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
-"""
 
-from collections import defaultdict
-from sys import stdin, exit as sysexit
+""" script that reads stdin line by line and computes metrics """
 
-STATUS_CODES = ['200', '301', '400', '401', '403', '404', '405', '500']
+import sys
 
 
-def print_stats(file_size, status_codes):
-    print("File size: {}".format(total_size), *(
-        "{}: {}".format(k, status_codes[k]) for k in sorted(status_codes)
-    ), sep="\n")
+def printsts(dic, size):
+    """ Prints information """
+    print("File size: {:d}".format(size))
+    for i in sorted(dic.keys()):
+        if dic[i] != 0:
+            print("{}: {:d}".format(i, dic[i]))
 
 
-if __name__ == '__main__':
-    status_codes = defaultdict(lambda: 0)
-    total_size = 0
-    line_count = 0
-    while True:
+sts = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+       "404": 0, "405": 0, "500": 0}
+
+count = 0
+size = 0
+
+try:
+    for line in sys.stdin:
+        if count != 0 and count % 10 == 0:
+            printsts(sts, size)
+
+        stlist = line.split()
+        count += 1
+
         try:
-            for _ in range(10):
-                line = stdin.readline()
-                if line:
-                    *_, status_code, file_size = line.split()
-                    if status_code in STATUS_CODES:
-                        status_codes[status_code] += 1
-                    total_size += int(file_size)
-                else:
-                    if total_size:
-                        print_stats(file_size, status_codes)
-                    sysexit(0)
-            print_stats(file_size, status_codes)
-        except KeyboardInterrupt:
-            print_stats(file_size, status_codes)
-            raise
+            size += int(stlist[-1])
+        except:
+            pass
+
+        try:
+            if stlist[-2] in sts:
+                sts[stlist[-2]] += 1
+        except:
+            pass
+    printsts(sts, size)
+
+
+except KeyboardInterrupt:
+    printsts(sts, size)
+    raise
