@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jun  5 15:43:09 2020
-@author: meco
+Created on Fri Jan  15 15:43:09 2023
+@author: danny
 """
 import json
 
@@ -10,6 +10,7 @@ import json
 class Base:
     """
     Class Base
+
     Attributes:
         nb_objects (int): Private class attribute
     """
@@ -18,6 +19,7 @@ class Base:
     def __init__(self, id=None):
         """
         Class constructor
+
         Attributes:
             id (int): An integer input for id
         """
@@ -31,6 +33,7 @@ class Base:
     def to_json_string(list_dictionaries):
         """
         Returns a json string representation
+
         Attributes:
             list_dictionaries (json): An inputted jason list of dictionaries
         Return:
@@ -44,8 +47,10 @@ class Base:
     def save_to_file(cls, list_objs):
         """
         Writes the json string repressentation list object to a file
+
         Attribute:
             list_objs (list): object list to save
+
         Return:
             json object to save in file
         """
@@ -61,8 +66,10 @@ class Base:
     def from_json_string(json_string):
         """
         Returns the list of json string representation
+
         Attribute:
             json_string (string): json object
+
         Return:
             json object to dictionary
         """
@@ -74,8 +81,10 @@ class Base:
     def create(cls, **dictionary):
         """
         Returns an instance with all attributes already set
+
         Attribute:
             dictionary (dict): inooutted dictionary
+
         Return:
             An instance with all attributer already set
         """
@@ -90,6 +99,7 @@ class Base:
     def load_from_file(cls):
         """
         Returns a list of instances
+
         Return:
             A list of instances
         """
