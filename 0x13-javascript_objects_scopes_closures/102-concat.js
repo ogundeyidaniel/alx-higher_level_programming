@@ -1,15 +1,5 @@
 #!/usr/bin/node
 const fs = require('fs');
-const file1 = process.argv[2];
-const file2 = process.argv[3];
-
-const content1 = fs.readFileSync(file1);
-const content2 = fs.readFileSync(file2);
-
-const contentNew = content1 + content2;
-
-fs.writeFile(process.argv[4], contentNew, 'utf-8', (err) => {
-  if (err) {
-    throw err;
-  }
-});
+const f1 = fs.readFileSync(process.argv[2], 'utf8');
+const f2 = fs.readFileSync(process.argv[3], 'utf8');
+fs.writeFileSync(process.argv[4], f1 + f2, 'utf-8');
