@@ -1,20 +1,18 @@
 #!/usr/bin/node
+function nextBiggest (arr) {
+  let max = 0; let result = 0;
 
-let biggest = 0;
-let i;
-const arrayNumbers = [];
+  for (const value of arr) {
+    const nr = Number(value);
 
-for (i = 2; i < process.argv.length; i++) {
-  if (Number.isNaN(parseInt(process.argv[i])) === false) {
-    arrayNumbers[i - 2] = parseInt(process.argv[i]);
+    if (nr > max) {
+      [result, max] = [max, nr];
+    } else if (nr < max && nr > result) {
+      result = nr;
+    }
   }
+
+  return result;
 }
 
-if (arrayNumbers.length > 1) {
-  biggest = Math.max.apply(null, arrayNumbers);
-  i = arrayNumbers.indexOf(biggest);
-  arrayNumbers[i] = -Infinity;
-  biggest = Math.max.apply(null, arrayNumbers);
-}
-
-console.log(biggest);
+console.log(nextBiggest(process.argv));
